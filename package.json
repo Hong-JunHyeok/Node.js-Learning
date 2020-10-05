@@ -1,8 +1,8 @@
 {
   "name": "node.js-learning",
   "version": "1.0.0",
-  "description": "server side js tutorials",
-  "main": "hello.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/Hong-JunHyeok/Node.js-Learning#readme",
   "dependencies": {
-    "underscore": "^1.11.0"
+    "express": "^4.17.1"
   }
 }
