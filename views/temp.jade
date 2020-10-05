@@ -1,34 +1,14 @@
-html
+doctype html
+html(lang='en')
     head
-        title= _title
+        meta(charset='UTF-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        title Document
     body
-        h1 Hello Jade!
-        ul
-            -for(var i = 0; i < 5; i ++)
-                li coding
-
-        div= time
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        form(action='/form_receiver' method='post')
+            p
+                input(type='text' name='title')
+            p
+                textarea(name='discription' cols='30' rows='10')
+            p
+                input(type='submit' value='제출')

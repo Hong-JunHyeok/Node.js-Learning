@@ -1,5 +1,26 @@
 const express = require("express");
+var bodyParser = require("body-parser");
+
 let app = express();
+app.set("view engine", "jade");
+app.set("views", "views");
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.get("/form", function (req, res) {
+    res.render("temp");
+});
+
+// app.get("/form_receiver", function (req, res) {
+//     var title = req.query.title;
+//     var discription = req.query.discription;
+//     res.send(title + "," + discription);
+// });
+
+app.post("/form_receiver", function (req, res) {
+    var title = req.body.title;
+    var discription = req.body.discription;
+    res.send(title + "," + discription);
+});
 
 app.get("/topic/:id", function (req, res) {
     var topics = ["js는 ...이다", "nodejs는 ...이다", "express는 ...이다"];
@@ -14,8 +35,12 @@ app.get("/topic/:id", function (req, res) {
     res.send(as);
     //ex ) ?id=2
 });
+
 app.get("/topic/:id/:mode", function (req, res) {
     res.send(req.params.id + "," + req.params.mode);
+});
+app.get("/temp", function (req, res) {
+    res.send();
 });
 app.listen(3000, function () {
     console.log("Connected 3000 port");
