@@ -2,7 +2,15 @@ const express = require("express");
 let app = express();
 
 app.get("/topic", function (req, res) {
-    res.send("당신의 id요청값은 : " + req.query.id); //쿼리스트링에 전달된 값을 출력함
+    var topics = ["js는 ...이다", "nodejs는 ...이다", "express는 ...이다"];
+    var as = `
+        <a href="/topic?id=0">JS 설명</a></br>
+        <a href="/topic?id=1">NodeJs 설명</a></br>
+        <a href="/topic?id=2">Express 설명</a></br>
+
+        ${topics[req.query.id]}
+    `;
+    res.send(as);
     //ex ) ?id=2
 });
 
