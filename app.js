@@ -15,9 +15,35 @@ app.get("/", function (req, res) {
 }); // "/" 경로에 대한 라우트 설정
 
 app.get("/topic", function (req, res) {
+    fs.readdir("data", function (err, files) {
+        if (err) {
+            console.log(err);
+            res.status(500).send("Error!");
+        }
+        res.render("view", { topics: files });
+    });
+});
+app.get("/topic/:id", function (req, res) {
+    var id = req.params.id;
+
+    fs.readdir("data", function (err, files) {
+        if (err) {
+            console.log(err);
+            res.status(500).send("Error!");
+        }
+
+        fs.readFile("data/" + id, "utf-8", function (err, data) {
+            if (err) {
+                console.log(err);
+                res.status(500).send("Error!");
+            }
+            res.render("view", { topics: files, title: id });
+        });
+    });
+});
+app.get("/topic/new", function (req, res) {
     res.render("form");
 });
-
 app.use(bodyParser.urlencoded({ extended: false })); //bodyParser 설정
 app.get("/form_receiver", function (req, res) {
     var title = req.query.title;

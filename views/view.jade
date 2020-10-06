@@ -1,0 +1,18 @@
+doctype html
+html(lang='kr')
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        title Document
+
+    body
+        h1 준혁 게시판
+        ul
+            each topic in topics
+                li 
+                    a(href="/topic/" + topic)= topic
+        article
+            h2= title
+        button
+            a(href="./form.jade") 글 작성
+
