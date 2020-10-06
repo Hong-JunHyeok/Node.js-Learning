@@ -22,7 +22,12 @@ app.use(bodyParser.urlencoded({ extended: false })); //bodyParser 설정
 app.get("/form_receiver", function (req, res) {
     var title = req.query.title;
     var description = req.query.description;
-    res.send("title : " + title + " description : " + description);
+    fs.writeFile("data/" + title, description, function (err) {
+        if (err) {
+            res.status(500).send("Error!");
+        }
+        res.send("title : " + title + " description : " + description);
+    });
 });
 
 app.listen(3000, function () {
